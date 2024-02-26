@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
+import android.content.Context
 
 class CounterAdapter(private val counters: MutableList<Counter>) :
     RecyclerView.Adapter<CounterAdapter.CounterViewHolder>() {
@@ -28,4 +30,11 @@ class CounterAdapter(private val counters: MutableList<Counter>) :
     }
 
     override fun getItemCount() = counters.size
+
+    holder.itemView.setOnClickListener {
+        val intent = Intent(context, CounterActivity::class.java)
+        intent.putExtra("COUNTER_ID", counter.id)
+        context.startActivity(intent)
+    }
+
 }
